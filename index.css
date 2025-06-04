@@ -5,10 +5,24 @@
 }
 
 body {
-  font-family: "Segoe UI", sans-serif;
-  background-color: #f2f2f2;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  /* padding: 40px; */
+  background: #f9f9f9;
 }
 
+.header{
+  text-align: center;
+  background-color: #000;
+  padding: 0;
+  margin: 0%;
+  color: #ccc;
+  font-size: 10px;
+  font-weight: 10px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  
+}
 .menu-toggle {
   font-size: 28px;
   cursor: pointer;
@@ -77,10 +91,12 @@ body {
 .nav-list {
   list-style: none;
   padding-left: 100px;
+  margin: 0;
 }
 
 .nav-list li {
   margin-bottom: 24px;
+  position: relative; 
 }
 
 .nav-list li a {
@@ -92,6 +108,29 @@ body {
 
 .nav-list li a:hover {
   color: #00bcd4;
+}
+
+/* Dropdown Menu Styles */
+.nav-list .dropdown-menu {
+  display: none;
+  list-style: none;
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+.nav-list .dropdown-menu li {
+  margin-bottom: 12px;
+}
+
+.nav-list .dropdown-menu li a {
+  font-size: 20px;
+  font-weight: 400;
+  color: #ddd;
+  text-decoration: none;
+}
+
+.nav-list li.dropdown:hover .dropdown-menu {
+  display: block;
 }
 
 .sidebar-right h3 {
@@ -116,6 +155,7 @@ body {
   color: #fff;
   font-weight: bold;
 }
+
 
 @media (max-width: 600px) {
   .sidebar-content {
@@ -142,14 +182,19 @@ body {
   }
 
   .vertical-text {
-    display: none; /* Hide vertical text on small screens */
+    display: none; 
   }
 
   .menu-toggle {
     font-size: 24px;
     padding: 6px 10px;
   }
+
+  .nav-list .dropdown-menu {
+    padding-left: 15px;
+  }
 }
+
 
 /* Background */
 .hero {
@@ -205,7 +250,6 @@ body {
   padding-bottom: 5px;
 }
 
-/* Responsive */
 @media (min-width: 768px) {
   .hero-content h1 {
     font-size: 64px;
@@ -281,7 +325,6 @@ body {
   margin-top: 10px;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .about-container {
     flex-direction: column;
@@ -303,7 +346,7 @@ body {
 
 /* we get it done */
 .experience-image {
-  margin-top: -60px; /* overlap effect */
+  margin-top: -60px; 
   text-align: center;
   z-index: 2;
   position: relative;
@@ -321,7 +364,6 @@ body {
   transform: scale(1.03);
 }
 
-/* Mobile optimization */
 @media (max-width: 768px) {
   .experience-image {
     margin-top: -40px;
@@ -386,17 +428,15 @@ MARKETING EXPERTISE */
   font-size: 0.9rem;
   color: #444;
 }
-
-/* Blue content card with hover effect */
 .content-card {
-  background-color: #f9f9f9; /* Light blue background */
-  color: #05223c; /* Dark text */
+  background-color: #f9f9f9; 
+  color: #05223c; 
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .expertise-card:hover {
-  background-color: #001a2e; /* Dark blue on hover */
-  color: white; /* White text on hover */
+  background-color: #001a2e; 
+  color: white; 
 }
 
 /* Make sure h3 and list items inherit color */
@@ -404,14 +444,11 @@ MARKETING EXPERTISE */
 .expertise-card ul li {
   color: inherit;
 }
-
-/* Hover lift for other cards */
 .expertise-card:hover:not(.content-card) {
   transform: translateY(-5px);
   background-color: #05223c;
 }
 
-/* Responsive rules */
 @media (max-width: 992px) {
   .expertise-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -424,58 +461,117 @@ MARKETING EXPERTISE */
   }
   
 }
+
 /* We work with remarkable brands */
-.brand-section {
-  padding: 60px;
-  background: #fff;
-  text-align: left;
+.brand-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
-.brand-section h2 {
+.left-content {
+  flex: 1 1 300px;
+  max-width: 500px;
+}
+
+.left-content h2 {
   font-size: 2.5rem;
   color: #05223c;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+  padding: 20px;
 }
 
-.brand-slider-wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.brand-slider {
+.slider-grid {
+  flex: 1 1 400px;
+  max-width: 600px;
   position: relative;
-  width: fit-content;
-  height: auto;
 }
 
-.brand-slide {
-  position: absolute;
-  top: 0;
-  right: 0;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-  display: grid;
-  grid-template-columns: repeat(3, 120px);
-  grid-template-rows: repeat(3, auto);
-  gap: 20px;
-  width: fit-content;
-  transform: none; /* NO vertical shift here */
-}
-
-.brand-slide.active {
-  opacity: 1;
-  z-index: 1;
-}
-
-.brand-slide img {
+.grid-container {
+  position: relative;
   width: 100%;
-  height: 90px;
-  object-fit: contain;
-  display: block;
+  overflow: hidden;
+  aspect-ratio: 3 / 2;
+}
 
-  /* Move logos a little upward */
-  margin-top: -10px;  /* <-- This is the key change */
+.slide-wrapper {
+  display: flex;
+  width: 200%;
+  transition: transform 1s ease-in-out;
+}
+
+.grid-slide {
+  width: 50%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.grid-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+
+.grid-item img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.navigation-controls {
+  text-align: right;
+  margin-top: 10px;
+  padding-bottom: 20px;
+}
+
+.prev-slide,
+.next-slide {
+  background-color: #05223c;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-left: 8px;
+}
+
+.prev-slide:hover,
+.next-slide:hover {
+  background-color: #003355;
+}
+
+@media (max-width: 900px) {
+  .brand-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .slider-grid {
+    max-width: 100%;
+  }
+
+  .grid-slide {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .grid-slide {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(9, 1fr);
+  }
 }
 
 
@@ -565,7 +661,6 @@ MARKETING EXPERTISE */
   background-color: #ccc;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .contact-container {
     flex-direction: column;
@@ -659,9 +754,21 @@ MARKETING EXPERTISE */
   color: #fff;
 }
 
-.footer-bottom {
-  text-align: center;
-  color: #999;
-  font-size: 14px;
-  margin-top: 30px;
+.footer-bottom{
+  margin-top: 20;
+  padding: 10px;
 }
+.footer-bottom p.one {
+  text-align: start;
+  color: #fff;
+  font-size: 14px;
+  
+}
+
+.footer-bottom p.two {
+  text-align: end;
+  color: #fff;
+  font-size: 14px;
+}
+
+
