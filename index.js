@@ -14,12 +14,29 @@ closeBtn.addEventListener('click', () => {
 
 // Slider
 
-let slides = document.querySelectorAll(".brand-slide");
-let currentSlide = 0;
 
-setInterval(() => {
-  slides[currentSlide].classList.remove("active");
-  currentSlide = (currentSlide + 1) % slides.length;
-  slides[currentSlide].classList.add("active");
-}, 4000);
+const slideWrapper = document.getElementById("slideWrapper");
+    const prevBtn = document.querySelector(".prev-slide");
+    const nextBtn = document.querySelector(".next-slide");
+    let currentSlide = 0;
+    const totalSlides = 2;
 
+    function updateSlidePosition() {
+      slideWrapper.style.transform = `translateX(-${currentSlide * 50}%)`;
+    }
+
+    prevBtn.addEventListener("click", () => {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      updateSlidePosition();
+    });
+
+    nextBtn.addEventListener("click", () => {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateSlidePosition();
+    });
+
+    updateSlidePosition();
+
+
+
+  
